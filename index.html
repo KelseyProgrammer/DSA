@@ -50,5 +50,54 @@ Pattern: ______
 Time: ______
 Space: ______ -->
 <!-- 
+<script
+<!-- <!-- const maxSubArr = (arr, k) => {
+  let maxSum = -Infinity;
+  let windowSum = 0;
+  let start = 0;
 
+  for (let end = 0; end <= arr.length - 1; end++){
+    windowSum += arr[end];
 
+    if(end >= k - 1){
+      maxSum = Math.max(maxSum, windowSum);
+      windowSum -= arr[start];
+      start++;
+    }
+  }
+  return maxSum;
+}; -->
+</script> -->
+const maxSubArr = (arr ,k) => {
+  let maxSum = -Infinity;
+  let windowSum = 0;
+  let start = 0;
+
+  for(let end = 0; end <= arr.length - 1; end++){
+    windowSum += arr[end];
+
+    if(end >= k - 1){
+      maxSum = Math.max(maxSum, windowSum);
+      windowSum -= arr[start];
+      start ++;
+    }
+  }
+  return maxSum;
+}
+<!-- Check if parentheses string is valid.
+Example: "()[]{}" → true, "(]" → false -->
+const isValidParenthesis = s => {
+  let stack = [];
+  let mapping = { ')': '(', ']': '[', '}': '{'};
+
+  for (let char of s){
+    if (mapping[char]){
+      if(stack.pop() !== mapping[char]){
+        return false;
+      }
+    } else {
+      stack.push(char);
+    }
+  }
+  return stack.length === 0;
+};
