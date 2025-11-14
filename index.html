@@ -32,10 +32,10 @@ const hourGlassSum = arr => {
   let maxSum =-Infinity;
 
   for (let i = 0; i < arr.length - 2; i++){
-    for (let j = 0; j < arr[i] - 2; j++){
+    for (let j = 0; j < arr[i].length - 2; j++){
       let sum =
-      arr[i][j] + arr[i][j + 1] + arr[i][i + 2] +
-      arr[i + 1][j] +
+      arr[i][j] + arr[i][j + 1] + arr[i][j + 2] +
+      arr[i + 1][j + 1] +
       arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2];
       maxSum = Math.max(sum, maxSum); 
     }
@@ -146,28 +146,28 @@ const climbStairs = (n) => {
   Time: ______
   Space: ______ -->
 
-  const levelOrder = (root) => {
-    if (!root) return [];
-    
-    const result = [];
-    const queue = [root];  // Start with root in queue
-    
-    while (queue.length > 0) {
-        const levelSize = queue.length;  // Number of nodes at current level
-        const currentLevel = [];  // Store values at current level
-        
-        // Process all nodes at current level
-        for (let i = 0; i < levelSize; i++) {
-            const node = queue.shift();  // Remove from front of queue
-            currentLevel.push(node.val);  // Add value to current level
-            
-            // Add children to queue for next level
-            if (node.left) queue.push(node.left);
-            if (node.right) queue.push(node.right);
+  const treeTraversal = root => {
+    if(!root) return [];
+  
+    let result = [];
+    let queue = [root];
+  
+    while(queue.length > 0){
+      let levelSize = queue.length;
+      let currentLevel = [];
+  
+      for(let i = 0; i < levelSize; i++){
+        let node = queue.shift();
+        currentLevel.push(node.val);
+  
+        if(node.left){
+          queue.push(node.left);
         }
-        
-        result.push(currentLevel);  // Add this level to result
+        if(node.right){
+          queue.push(node.right);
+        }
+      }
+      result.push(currentLevel);
     }
-    
     return result;
-};
+  };
