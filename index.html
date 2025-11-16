@@ -157,7 +157,7 @@ const climbStairs = (n) => {
       let currentLevel = [];
   
       for(let i = 0; i < levelSize; i++){
-        let node = queue.shift();
+        let node = queue.shift();           
         currentLevel.push(node.val);
   
         if(node.left){
@@ -171,3 +171,5 @@ const climbStairs = (n) => {
     }
     return result;
   };
+
+ 
